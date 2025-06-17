@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ゲノム診療用病理組織検体取扱い規程 - 試験対策</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '🧬';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.1;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .overview {
+            background: linear-gradient(135deg, #84fab0 0%, #8fd3f4 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .overview::before {
+            content: '📋';
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 40px;
+        }
+        
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .process-card {
+            background: white;
+            border-left: 5px solid;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            position: relative;
+            transition: transform 0.3s ease;
+        }
+        
+        .process-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .pre-analysis {
+            border-color: #ff6b6b;
+            background: linear-gradient(135deg, #ffe4e4 0%, #fff 100%);
+        }
+        
+        .analysis {
+            border-color: #4ecdc4;
+            background: linear-gradient(135deg, #e4f9f7 0%, #fff 100%);
+        }
+        
+        .post-analysis {
+            border-color: #45b7d1;
+            background: linear-gradient(135deg, #e4f4fd 0%, #fff 100%);
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .recommendations {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .rec-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 12px;
+            padding: 20px;
+            position: relative;
+        }
+        
+        .rec-type {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .clinical {
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .research {
+            background: #4ecdc4;
+            color: white;
+        }
+        
+        .avoid {
+            background: #333;
+            color: white;
+        }
+        
+        .key-points {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .evidence-data {
+            background: linear-gradient(135deg, #d299c2 0%, #fef9d7 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 30px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #ff6b6b, #4ecdc4);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-left: 70px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff6b6b;
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px #ff6b6b;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+            color: white;
+            padding: 3px 8px;
+            border-radius: 6px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .icon {
+            font-size: 1.5em;
+            margin-right: 10px;
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+        
+        li::before {
+            content: '▶️';
+            margin-right: 10px;
+        }
+        
+        .warning {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fad0c4 100%);
+            border: 2px solid #ff6b6b;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        .success {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border: 2px solid #4ecdc4;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .process-flow {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>ゲノム診療用病理組織検体取扱い規程</h1>
+            <div class="subtitle">日本病理学会 - 試験対策グラフィックレコード</div>
+        </div>
+        
+        <div class="content">
+            <div class="overview">
+                <h2><span class="icon">🎯</span>概要と目的</h2>
+                <p><strong>背景：</strong>次世代シークエンサー(NGS)を用いたゲノム診断の臨床導入に向けて、FFPE検体の適切な取扱いが必要</p>
+                <p><strong>目的：</strong>ゲノム診断に耐えうる一定水準以上の品質を持つFFPE検体の標準的な作製方法を定める</p>
+                <div class="warning">
+                    <strong>⚠️ 重要：</strong>多遺伝子検査では単一遺伝子検査以上に厳格な品質管理が必要
+                </div>
+            </div>
+
+            <h2><span class="icon">🔄</span>プロセスフロー</h2>
+            <div class="process-flow">
+                <div class="process-card pre-analysis">
+                    <div class="card-title">
+                        <span class="icon">⏰</span>プレアナリシス段階
+                    </div>
+                    <h4>a) 固定前プロセス</h4>
+                    <ul>
+                        <li>摘出後1時間以内、遅くとも3時間以内に固定</li>
+                        <li>4°C下で保管</li>
+                        <li>30分以上室温保持は回避</li>
+                    </ul>
+                    
+                    <h4>b) 固定プロセス</h4>
+                    <ul>
+                        <li>10%中性緩衝ホルマリン使用</li>
+                        <li>6-48時間固定</li>
+                        <li>固定液量は組織量の10倍</li>
+                        <li>室温で処理</li>
+                    </ul>
+                    
+                    <h4>c) 固定後プロセス</h4>
+                    <ul>
+                        <li>EDTA脱灰（酸脱灰回避）</li>
+                        <li>従来型プロセッサー使用可能</li>
+                        <li>室温保管、多湿回避</li>
+                    </ul>
+                </div>
+
+                <div class="process-card analysis">
+                    <div class="card-title">
+                        <span class="icon">🔬</span>アナリシス段階
+                    </div>
+                    <h4>a) FFPEブロック選択</h4>
+                    <ul>
+                        <li>病理医による適切なブロック選択</li>
+                        <li>新しい検体を優先</li>
+                        <li>出血・壊死・炎症部位回避</li>
+                    </ul>
+                    
+                    <h4>b) 薄切・マーキング</h4>
+                    <ul>
+                        <li>ミクロトーム刃交換でコンタミ防止</li>
+                        <li>HE染色でマーキング</li>
+                        <li>腫瘍割合判定（30-50%以上）</li>
+                    </ul>
+                    
+                    <h4>c) 核酸抽出</h4>
+                    <ul>
+                        <li>標準化市販キット使用</li>
+                        <li>A260/A280比確認</li>
+                        <li>品質確認（ΔCt値等）</li>
+                    </ul>
+                </div>
+
+                <div class="process-card post-analysis">
+                    <div class="card-title">
+                        <span class="icon">📊</span>品質管理
+                    </div>
+                    <h4>核酸品質指標</h4>
+                    <ul>
+                        <li><strong>ΔCt値：</strong>DNA品質評価</li>
+                        <li><strong>DIN：</strong>DNA断片化評価</li>
+                        <li><strong>Q-value：</strong>総合品質指標</li>
+                        <li><strong>DV200：</strong>RNA品質指標</li>
+                    </ul>
+                    
+                    <div class="success">
+                        <strong>✅ 目標値</strong><br>
+                        ΔCt < 5: 高品質<br>
+                        DIN > 2: 使用可能<br>
+                        Q-value > 0.2: 良好
+                    </div>
+                </div>
+            </div>
+
+            <h2><span class="icon">📝</span>推奨事項分類</h2>
+            <div class="recommendations">
+                <div class="rec-card">
+                    <span class="rec-type clinical">C</span>
+                    <h4>日常診療推奨事項</h4>
+                    <ul>
+                        <li>10%中性緩衝ホルマリン使用</li>
+                        <li>適切な固定時間（6-48時間）</li>
+                        <li>病理医によるブロック選択</li>
+                        <li>標準的な検体作製手順</li>
+                    </ul>
+                </div>
+
+                <div class="rec-card">
+                    <span class="rec-type research">R</span>
+                    <h4>臨床研究推奨事項</h4>
+                    <ul>
+                        <li>可及的速やかな固定</li>
+                        <li>冷蔵下でのFFPE保存</li>
+                        <li>詳細な品質確認</li>
+                        <li>非ホルマリン系固定液考慮</li>
+                    </ul>
+                </div>
+
+                <div class="rec-card">
+                    <span class="rec-type avoid">N</span>
+                    <h4>回避すべき事項</h4>
+                    <ul>
+                        <li>30分以上の室温放置</li>
+                        <li>固定不良・過固定</li>
+                        <li>酸脱灰処理</li>
+                        <li>7日以上の長期固定</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="key-points">
+                <h2><span class="icon">💡</span>重要ポイント</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h4>冷虚血時間</h4>
+                        <p>摘出から固定開始まで：<span class="highlight">1時間以内（最大3時間）</span></p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>固定液</h4>
+                        <p><span class="highlight">10%中性緩衝ホルマリン</span>、組織量の10倍量使用</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>固定時間</h4>
+                        <p><span class="highlight">6-48時間</span>（コンパニオン診断推奨に準拠）</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h4>腫瘍割合</h4>
+                        <p>SNV/indel: <span class="highlight">30%以上</span>, CNA: <span class="highlight">50%以上</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="evidence-data">
+                <h2><span class="icon">📈</span>実証データのポイント</h2>
+                <ul>
+                    <li><strong>GI-SCREEN試験：</strong>20施設、2866検体で施設間差を確認</li>
+                    <li><strong>品質分布：</strong>高品質45%、中間品質33%、低品質22%</li>
+                    <li><strong>固定時間の影響：</strong>7日以上でライブラリー調製困難</li>
+                    <li><strong>保管期間：</strong>3年以内のFFPEブロック使用推奨</li>
+                    <li><strong>C>T置換：</strong>固定時間延長により増加（アーティファクト）</li>
+                </ul>
+            </div>
+
+            <div class="warning">
+                <h3><span class="icon">⚠️</span>臨床における注意点</h3>
+                <p><strong>ゲノム診断では複数遺伝子を対象とするため、現行の単一遺伝子検査以上により厳格な品質管理が必要です。不適切な検体使用により検査失敗や誤結果が生じると、患者の治療機会損失につながります。</strong></p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

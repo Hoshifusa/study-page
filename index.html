@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>医学学習サイト - 試験対策教材</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Hiragino Kaku Gothic Pro', 'Yu Gothic', 'Meiryo', sans-serif;
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '📚';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 150px;
+            opacity: 0.1;
+        }
+        
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .intro {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .materials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .material-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .material-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+        }
+        
+        .material-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #4ecdc4;
+        }
+        
+        .card-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+            display: block;
+            text-align: center;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            text-align: center;
+        }
+        
+        .card-description {
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+            line-height: 1.6;
+        }
+        
+        .card-link {
+            display: inline-block;
+            width: 100%;
+            padding: 12px 20px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            text-align: center;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        
+        .card-link:hover {
+            background: linear-gradient(45deg, #ff5252, #26a69a);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+        
+        .info-section {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .update-log {
+            background: linear-gradient(135deg, #e0c3fc 0%, #9bb5ff 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+        
+        .update-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 8px;
+        }
+        
+        .update-date {
+            background: rgba(255,255,255,0.8);
+            padding: 4px 12px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-right: 15px;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            border-top: 1px solid #eee;
+            background: #f8f9fa;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+            
+            .materials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>医学学習サイト</h1>
+            <div class="subtitle">試験対策教材集</div>
+        </div>
+        
+        <div class="content">
+            <div class="intro">
+                <h2>🎯 ようこそ学習サイトへ</h2>
+                <p>各種医学系試験対策のための教材をまとめています。<br>
+                視覚的に整理されたグラフィックレコードで効率的に学習できます。</p>
+            </div>
+
+            <h2 style="text-align: center; margin-bottom: 20px; color: #2c3e50;">📖 学習教材一覧</h2>
+            
+            <div class="materials-grid">
+                <div class="material-card">
+                    <div class="card-icon">🧬</div>
+                    <div class="card-title">ゲノム診療用病理組織検体取扱い規程</div>
+                    <div class="card-description">
+                        日本病理学会による規程をグラフィックレコード形式でまとめました。<br>
+                        NGSを用いたゲノム診断に必要な検体の適切な取扱い方法を学習できます。
+                    </div>
+                    <a href="pathology.html" class="card-link">📚 学習開始</a>
+                </div>
+
+                <div class="material-card">
+                    <div class="card-icon">🔬</div>
+                    <div class="card-title">遺伝性腫瘍症候群</div>
+                    <div class="card-description">
+                        遺伝性腫瘍症候群の基礎知識から臨床応用まで。<br>
+                        試験に頻出するポイントを視覚的に整理しています。
+                    </div>
+                    <a href="genetics.html" class="card-link">📚 学習開始</a>
+                </div>
+            </div>
+
+
+
+            <div class="update-log">
+                <h3>📅 更新履歴</h3>
+                <div class="update-item">
+                    <div class="update-date">2025/06/17</div>
+                    <div>ゲノム診療用病理組織検体取扱い規程 追加</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-date">2025/06/17</div>
+                    <div>遺伝性腫瘍症候群 追加</div>
+                </div>
+                <div class="update-item">
+                    <div class="update-date">2025/06/17</div>
+                    <div>学習サイト開設</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>📖 医学学習サイト - 試験対策教材集</p>
+            <p style="font-size: 0.8em; margin-top: 5px;">学習効率を最大化するグラフィックレコード形式</p>
+        </div>
+    </div>
+</body>
+</html>

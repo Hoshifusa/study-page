@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🧬 家族性腫瘍症候群 - 試験対策学習ツール</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Hiragino Sans', 'Yu Gothic', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .tabs {
+            display: flex;
+            background: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px 10px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
+            min-width: 140px;
+        }
+
+        .tab-button:hover {
+            background: #e9ecef;
+        }
+
+        .tab-button.active {
+            background: white;
+            border-bottom-color: #4ecdc4;
+            color: #4ecdc4;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .study-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 5px solid #4ecdc4;
+            transition: transform 0.2s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .syndrome-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 12px 0;
+            border-left: 4px solid #ff6b6b;
+            transition: all 0.2s ease;
+        }
+
+        .syndrome-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .syndrome-name {
+            font-weight: bold;
+            color: #2d3436;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gene-badge {
+            background: #e3f2fd;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #1565c0;
+            margin: 3px;
+            display: inline-block;
+        }
+
+        .inheritance-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            margin: 5px 5px 5px 0;
+            display: inline-block;
+        }
+
+        .ad { background: #ffcdd2; color: #c62828; }
+        .ar { background: #c8e6c9; color: #2e7d32; }
+
+        .tumor-tags {
+            margin: 8px 0;
+        }
+
+        .tumor-tag {
+            background: #fff3e0;
+            padding: 3px 8px;
+            margin: 2px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            border: 1px solid #ffcc02;
+            color: #e65100;
+            display: inline-block;
+        }
+
+        .function-tag {
+            background: #f3e5f5;
+            padding: 3px 8px;
+            border-radius: 8px;
+            font-size: 0.8rem;
+            color: #6a1b9a;
+            display: inline-block;
+            margin: 2px;
+        }
+
+        .memory-tip {
+            background: #e8f5e8;
+            border-left: 4px solid #4caf50;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            font-style: italic;
+            color: #2e7d32;
+        }
+
+        .exam-point {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 10px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        .exam-point strong {
+            color: #856404;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            border: 1px solid #dee2e6;
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .comparison-table th {
+            background: #f8f9fa;
+            font-weight: bold;
+            color: #495057;
+        }
+
+        .comparison-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+
+        .summary-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4ecdc4;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                padding: 12px;
+                font-size: 0.9rem;
+            }
+
+            .study-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧬 家族性腫瘍症候群 試験対策学習ツール</h1>
+            <p>系統的に整理された情報で効率的に学習しましょう</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('inheritance')">📊 遺伝形式別</button>
+            <button class="tab-button" onclick="showTab('function')">🔬 機能別分類</button>
+            <button class="tab-button" onclick="showTab('complete')">📋 全症候群一覧</button>
+            <button class="tab-button" onclick="showTab('exam')">🎯 試験対策</button>
+            <button class="tab-button" onclick="showTab('memory')">💡 暗記法</button>
+        </div>
+
+        <div class="tab-content active" id="inheritance">
+            <h2>📊 遺伝形式別分類</h2>
+            
+            <div class="summary-stats">
+                <div class="stat-box">
+                    <div class="stat-number">17</div>
+                    <div class="stat-label">常染色体優性</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">常染色体劣性</div>
+                </div>
+            </div>
+
+            <div class="study-grid">
+                <div class="category-card">
+                    <div class="category-title">🔴 常染色体優性遺伝（AD）</div>
+                    <p style="margin-bottom: 15px; color: #6c757d;">親の一方が変異を持てば50%の確率で子に伝わる</p>
+                    
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Li-Fraumeni症候群
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">TP53</div>
+                        <div class="function-tag">細胞周期制御・DNA異常</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                            <span class="tumor-tag">巨細胞腫</span>
+                            <span class="tumor-tag">脳腫瘍</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            家族性網膜芽細胞腫
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">RB</div>
+                        <div class="function-tag">細胞周期制御</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">網膜芽細胞腫</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            神経線維腫症1型（NF1）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">NF1</div>
+                        <div class="function-tag">RAS不活性化</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">神経線維腫</span>
+                            <span class="tumor-tag">神経膠腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            神経線維腫症2型（NF2）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">NF2</div>
+                        <div class="function-tag">RAS不活性化</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">髄膜腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Lynch症候群（HNPCC）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">MSH2</div>
+                        <div class="gene-badge">MSH6</div>
+                        <div class="gene-badge">MLH1</div>
+                        <div class="gene-badge">PMS2</div>
+                        <div class="function-tag">DNA修復（MMR）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">子宮内膜がん</span>
+                            <span class="tumor-tag">卵巣がん</span>
+                            <span class="tumor-tag">胃がん</span>
+                            <span class="tumor-tag">胆道がん</span>
+                            <span class="tumor-tag">尿管がん</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            家族性大腸腺腫症（FAP）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">APC</div>
+                        <div class="function-tag">転写制御</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">甲状腺がん</span>
+                            <span class="tumor-tag">肝芽腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Peutz-Jeghers症候群
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">LKB1/STK11</div>
+                        <div class="function-tag">セリン/スレオニンキナーゼ</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸癌症候群</span>
+                            <span class="tumor-tag">大腸がん</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            遺伝性乳がん卵巣がん症候群（HBOC）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">BRCA1</div>
+                        <div class="gene-badge">BRCA2</div>
+                        <div class="function-tag">DNA修復（DSBR）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">卵巣がん</span>
+                            <span class="tumor-tag">前立腺がん</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Cowden症候群
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">PTEN</div>
+                        <div class="function-tag">PI3キナーゼ制御</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">甲状腺がん</span>
+                            <span class="tumor-tag">子宮内膜がん</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Gorlin症候群
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">PTCH</div>
+                        <div class="function-tag">ソニックヘッジホッグ</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">基底細胞がん</span>
+                            <span class="tumor-tag">髄芽腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            遺伝性黒色腫
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">p16/INK4A</div>
+                        <div class="function-tag">細胞周期制御</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">悪性黒色腫</span>
+                            <span class="tumor-tag">膵がん</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            多発性内分泌腫瘍1型（MEN1）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">MEN1</div>
+                        <div class="function-tag">転写制御・DNA修復</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">下垂体腫瘍</span>
+                            <span class="tumor-tag">膵島腫瘍</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            多発性内分泌腫瘍2型（MEN2）
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">RET</div>
+                        <div class="function-tag">チロシンキナーゼ</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">甲状腺髄様がん</span>
+                            <span class="tumor-tag">副甲状腺腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            von Hippel-Lindau病
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">VHL</div>
+                        <div class="function-tag">タンパク質分解</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">腎細胞がん</span>
+                            <span class="tumor-tag">小脳血管芽腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Wilms腫瘍
+                            <span class="inheritance-badge ad">AD</span>
+                        </div>
+                        <div class="gene-badge">関連遺伝子</div>
+                        <div class="function-tag">転写制御</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">腎細胞がん</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">🔵 常染色体劣性遺伝（AR）</div>
+                    <p style="margin-bottom: 15px; color: #6c757d;">両親ともに保因者の場合、25%の確率で子に発症</p>
+                    
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            末梢血管拡張性運動失調
+                            <span class="inheritance-badge ar">AR</span>
+                        </div>
+                        <div class="gene-badge">ATM</div>
+                        <div class="function-tag">DNA修復（DSBR）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">白血病</span>
+                            <span class="tumor-tag">リンパ腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Bloom症候群
+                            <span class="inheritance-badge ar">AR</span>
+                        </div>
+                        <div class="gene-badge">BLM</div>
+                        <div class="function-tag">DNA修復（Helicase）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">腎細胞がん</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            色素性乾皮症
+                            <span class="inheritance-badge ar">AR</span>
+                        </div>
+                        <div class="gene-badge">XP(A1-G)</div>
+                        <div class="gene-badge">DDB2</div>
+                        <div class="gene-badge">POLH</div>
+                        <div class="function-tag">DNA修復（NER）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">基底細胞がん</span>
+                            <span class="tumor-tag">黒色腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">
+                            Fanconi貧血
+                            <span class="inheritance-badge ar">AR</span>
+                        </div>
+                        <div class="gene-badge">FANC</div>
+                        <div class="function-tag">DNA修復（DSBR）</div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">骨髄異形成症候群</span>
+                            <span class="tumor-tag">白血病</span>
+                            <span class="tumor-tag">肝がん</span>
+                        </div>
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>🎯 試験ポイント：</strong>
+                        劣性遺伝は両親が保因者でも無症状。DNA修復異常が多く、日光感受性や発達遅滞を伴うことがある。
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="function">
+            <h2>🔬 遺伝子機能別分類</h2>
+            
+            <div class="study-grid">
+                <div class="category-card">
+                    <div class="category-title">🔧 DNA修復遺伝子</div>
+                    
+                    <h4 style="color: #1565c0; margin: 15px 0 10px 0;">二重鎖切断修復（DSBR）</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">BRCA1/BRCA2 <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">卵巣がん</span>
+                            <span class="tumor-tag">前立腺がん</span>
+                        </div>
+                    </div>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">ATM <span class="inheritance-badge ar">AR</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">白血病</span>
+                            <span class="tumor-tag">リンパ腫</span>
+                        </div>
+                    </div>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">FANC <span class="inheritance-badge ar">AR</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">骨髄異形成症候群</span>
+                            <span class="tumor-tag">白血病</span>
+                            <span class="tumor-tag">肝がん</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #1565c0; margin: 15px 0 10px 0;">ミスマッチ修復（MMR）</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">MLH1/MSH2/MSH6/PMS2 <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">子宮内膜がん</span>
+                            <span class="tumor-tag">卵巣がん</span>
+                            <span class="tumor-tag">胃がん</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #1565c0; margin: 15px 0 10px 0;">ヌクレオチド除去修復（NER）</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">XP関連遺伝子 <span class="inheritance-badge ar">AR</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">基底細胞がん</span>
+                            <span class="tumor-tag">黒色腫</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #1565c0; margin: 15px 0 10px 0;">ヘリケース</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">BLM <span class="inheritance-badge ar">AR</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">腎細胞がん</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                        </div>
+                    </div>
+
+                    <div class="memory-tip">
+                        💡 <strong>暗記のコツ：</strong> DNA修復異常→がんリスク↑、BRCA=乳がん・卵巣がん、Lynch=大腸がん・子宮内膜がん
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">⚙️ 細胞周期制御・がん抑制遺伝子</div>
+                    
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">TP53（Li-Fraumeni症候群） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                            <span class="tumor-tag">巨細胞腫</span>
+                            <span class="tumor-tag">脳腫瘍</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">RB（家族性網膜芽細胞腫） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">網膜芽細胞腫</span>
+                            <span class="tumor-tag">骨肉腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">p16/INK4A（遺伝性黒色腫） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">悪性黒色腫</span>
+                            <span class="tumor-tag">膵がん</span>
+                        </div>
+                    </div>
+
+                    <div class="memory-tip">
+                        💡 <strong>暗記のコツ：</strong> TP53=「がんの番人」、RB=網膜芽細胞腫、p16=メラノーマ
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">📡 シグナル伝達経路</div>
+                    
+                    <h4 style="color: #e65100; margin: 15px 0 10px 0;">RAS経路</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">NF1/NF2 <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">神経線維腫</span>
+                            <span class="tumor-tag">神経膠腫</span>
+                            <span class="tumor-tag">髄膜腫</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #e65100; margin: 15px 0 10px 0;">PI3K/AKT経路</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">PTEN（Cowden症候群） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">乳がん</span>
+                            <span class="tumor-tag">甲状腺がん</span>
+                            <span class="tumor-tag">子宮内膜がん</span>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #e65100; margin: 15px 0 10px 0;">キナーゼ</h4>
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">RET（MEN2） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">甲状腺髄様がん</span>
+                            <span class="tumor-tag">副甲状腺腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">LKB1/STK11（Peutz-Jeghers） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸癌症候群</span>
+                            <span class="tumor-tag">大腸がん</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">📝 転写制御・その他</div>
+                    
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">APC（FAP） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">大腸がん</span>
+                            <span class="tumor-tag">甲状腺がん</span>
+                            <span class="tumor-tag">肝芽腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">VHL（von Hippel-Lindau病） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">腎細胞がん</span>
+                            <span class="tumor-tag">小脳血管芽腫</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">MEN1 <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">下垂体腫瘍</span>
+                            <span class="tumor-tag">膵島腫瘍</span>
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">PTCH（Gorlin症候群） <span class="inheritance-badge ad">AD</span></div>
+                        <div class="tumor-tags">
+                            <span class="tumor-tag">基底細胞がん</span>
+                            <span class="tumor-tag">髄芽腫</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="complete">
+            <h2>📋 全家族性腫瘍症候群一覧（21症候群完全網羅）</h2>
+            
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>症候群名</th>
+                        <th>責任遺伝子</th>
+                        <th>遺伝様式</th>
+                        <th>機能</th>
+                        <th>主な腫瘍</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Li-Fraumeni症候群</strong></td>
+                        <td>TP53</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>細胞周期制御・DNA異常</td>
+                        <td>乳がん、骨肉腫、巨細胞腫、脳腫瘍</td>
+                    </tr>
+                    <tr>
+                        <td><strong>末梢血管拡張性運動失調</strong></td>
+                        <td>ATM</td>
+                        <td><span class="inheritance-badge ar">AR</span></td>
+                        <td>DNA修復（DSBR）</td>
+                        <td>乳がん、白血病、リンパ腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Bloom症候群</strong></td>
+                        <td>BLM</td>
+                        <td><span class="inheritance-badge ar">AR</span></td>
+                        <td>DNA修復（Helicase）</td>
+                        <td>大腸がん、腎細胞がん、骨肉腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>家族性網膜芽細胞腫</strong></td>
+                        <td>RB</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>細胞周期制御</td>
+                        <td>網膜芽細胞腫、骨肉腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>神経線維腫症1型</strong></td>
+                        <td>NF1</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>RAS不活性化</td>
+                        <td>神経線維腫、神経膠腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>神経線維腫症2型</strong></td>
+                        <td>NF2</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>RAS不活性化</td>
+                        <td>髄膜腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Lynch症候群</strong></td>
+                        <td>MSH2, MSH6, MLH1, PMS2</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>DNA修復（MMR）</td>
+                        <td>大腸がん、子宮内膜がん、卵巣がん、胃がん、胆道がん、尿管がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>家族性大腸腺腫症（FAP）</strong></td>
+                        <td>APC</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>転写制御</td>
+                        <td>大腸がん、甲状腺がん、肝芽腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Peutz-Jeghers症候群</strong></td>
+                        <td>LKB1/STK11</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>セリン/スレオニンキナーゼ</td>
+                        <td>大腸癌症候群、大腸がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>HBOC</strong></td>
+                        <td>BRCA1, BRCA2</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>DNA修復（DSBR）</td>
+                        <td>乳がん、卵巣がん、前立腺がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Cowden症候群</strong></td>
+                        <td>PTEN</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>PI3キナーゼ制御</td>
+                        <td>乳がん、甲状腺がん、子宮内膜がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Gorlin症候群</strong></td>
+                        <td>PTCH</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>ソニックヘッジホッグ</td>
+                        <td>基底細胞がん、髄芽腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>遺伝性黒色腫</strong></td>
+                        <td>p16/INK4A</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>細胞周期制御</td>
+                        <td>悪性黒色腫、膵がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>色素性乾皮症</strong></td>
+                        <td>XP(A1-G), DDB2, POLH</td>
+                        <td><span class="inheritance-badge ar">AR</span></td>
+                        <td>DNA修復（NER）</td>
+                        <td>基底細胞がん、黒色腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MEN1</strong></td>
+                        <td>MEN1</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>転写制御・DNA修復</td>
+                        <td>下垂体腫瘍、膵島腫瘍</td>
+                    </tr>
+                    <tr>
+                        <td><strong>MEN2</strong></td>
+                        <td>RET</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>チロシンキナーゼ</td>
+                        <td>甲状腺髄様がん、副甲状腺腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>von Hippel-Lindau病</strong></td>
+                        <td>VHL</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>タンパク質分解</td>
+                        <td>腎細胞がん、小脳血管芽腫</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Wilms腫瘍</strong></td>
+                        <td>関連遺伝子</td>
+                        <td><span class="inheritance-badge ad">AD</span></td>
+                        <td>転写制御</td>
+                        <td>腎細胞がん</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fanconi貧血</strong></td>
+                        <td>FANC</td>
+                        <td><span class="inheritance-badge ar">AR</span></td>
+                        <td>DNA修復（DSBR）</td>
+                        <td>骨髄異形成症候群、白血病、肝がん</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-content" id="exam">
+            <h2>🎯 試験対策・よく出る問題パターン</h2>
+            
+            <div class="study-grid">
+                <div class="category-card">
+                    <div class="category-title">📝 頻出問題パターン</div>
+                    
+                    <div class="exam-point">
+                        <strong>パターン1：遺伝子名→症候群名</strong><br>
+                        「BRCA1遺伝子変異で起こる症候群は？」<br>
+                        → 遺伝性乳がん卵巣がん症候群（HBOC）
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>パターン2：症候群名→関連腫瘍</strong><br>
+                        「Li-Fraumeni症候群で発症しやすい腫瘍は？」<br>
+                        → 乳がん、骨肉腫、巨細胞腫、脳腫瘍
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>パターン3：遺伝様式の判別</strong><br>
+                        「両親ともに無症状で子に発症した場合の遺伝様式は？」<br>
+                        → 常染色体劣性遺伝（AR）
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>パターン4：DNA修復機能の分類</strong><br>
+                        「BRCA1/BRCA2遺伝子の機能は？」<br>
+                        → DNA修復（二重鎖切断修復：DSBR）
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>パターン5：特徴的な組み合わせ</strong><br>
+                        「大腸がん + 子宮内膜がんの組み合わせで疑う症候群は？」<br>
+                        → Lynch症候群
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">🔥 特に重要な症候群</div>
+                    
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">🥇 Lynch症候群（最重要）</div>
+                        <div style="font-size: 0.9rem; color: #6c757d; margin: 5px 0;">
+                            ・MMR遺伝子（MLH1, MSH2, MSH6, PMS2）<br>
+                            ・大腸がん + 子宮内膜がんが特徴<br>
+                            ・マイクロサテライト不安定性（MSI）
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">🥈 HBOC（2番目に重要）</div>
+                        <div style="font-size: 0.9rem; color: #6c757d; margin: 5px 0;">
+                            ・BRCA1/BRCA2遺伝子<br>
+                            ・乳がん + 卵巣がんが特徴<br>
+                            ・男性では前立腺がんリスク上昇
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">🥉 FAP（3番目に重要）</div>
+                        <div style="font-size: 0.9rem; color: #6c757d; margin: 5px 0;">
+                            ・APC遺伝子<br>
+                            ・100個以上の大腸ポリープ<br>
+                            ・ほぼ100%大腸がん発症
+                        </div>
+                    </div>
+
+                    <div class="syndrome-item">
+                        <div class="syndrome-name">⭐ Li-Fraumeni症候群</div>
+                        <div style="font-size: 0.9rem; color: #6c757d; margin: 5px 0;">
+                            ・TP53遺伝子（がんの番人）<br>
+                            ・若年発症の多発がん<br>
+                            ・乳がん、骨肉腫、脳腫瘍
+                        </div>
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">⚡ 絶対覚える遺伝子</div>
+                    
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>遺伝子</th>
+                                <th>症候群</th>
+                                <th>キーワード</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><span class="gene-badge">BRCA1/2</span></td>
+                                <td>HBOC</td>
+                                <td>乳がん・卵巣がん</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gene-badge">MLH1/MSH2</span></td>
+                                <td>Lynch症候群</td>
+                                <td>大腸がん・子宮内膜がん</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gene-badge">APC</span></td>
+                                <td>FAP</td>
+                                <td>大腸ポリープ</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gene-badge">TP53</span></td>
+                                <td>Li-Fraumeni</td>
+                                <td>若年多発がん</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gene-badge">RB</span></td>
+                                <td>網膜芽細胞腫</td>
+                                <td>小児眼腫瘍</td>
+                            </tr>
+                            <tr>
+                                <td><span class="gene-badge">VHL</span></td>
+                                <td>von Hippel-Lindau</td>
+                                <td>腎細胞がん・血管芽腫</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="tab-content" id="memory">
+            <h2>💡 効果的な暗記法・語呂合わせ</h2>
+            
+            <div class="study-grid">
+                <div class="category-card">
+                    <div class="category-title">🧠 遺伝子の語呂合わせ</div>
+                    
+                    <div class="memory-tip">
+                        <strong>BRCA1/2（ブルカ）：</strong><br>
+                        「<span class="highlight">ブ</span>ルカで隠す<span class="highlight">乳</span>と<span class="highlight">卵</span>巣」<br>
+                        → 乳がん・卵巣がん
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>Lynch（リンチ）：</strong><br>
+                        「<span class="highlight">リン</span>チで<span class="highlight">大腸</span>と<span class="highlight">子宮</span>をやられた」<br>
+                        → 大腸がん・子宮内膜がん
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>TP53：</strong><br>
+                        「<span class="highlight">T</span>eenager（若者）の<span class="highlight">P</span>roblem（問題）<span class="highlight">53</span>」<br>
+                        → 若年発症の多発がん
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>APC：</strong><br>
+                        「<span class="highlight">A</span>ll <span class="highlight">P</span>olyps become <span class="highlight">C</span>ancer」<br>
+                        → 全てのポリープががんになる
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>VHL：</strong><br>
+                        「<span class="highlight">V</span>ery <span class="highlight">H</span>eavy <span class="highlight">L</span>iver（とても重い肝臓）」<br>
+                        → 腎細胞がん（腎臓つながり）
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">🎯 症候群の特徴で覚える</div>
+                    
+                    <div class="memory-tip">
+                        <strong>Li-Fraumeni症候群：</strong><br>
+                        「<span class="highlight">Li</span>ttle（小さい）kids（子供）の<span class="highlight">Fra</span>cture（骨折）」<br>
+                        → 小児・若年の骨肉腫
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>Cowden症候群：</strong><br>
+                        「<span class="highlight">Cow</span>（牛）の<span class="highlight">乳</span>と<span class="highlight">甲状腺</span>」<br>
+                        → 乳がん・甲状腺がん
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>Peutz-Jeghers症候群：</strong><br>
+                        「<span class="highlight">P</span>olyp（ポリープ）と<span class="highlight">J</span>aw（顎）の斑点」<br>
+                        → 消化管ポリープ・色素沈着
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>Gorlin症候群：</strong><br>
+                        「<span class="highlight">Go</span>（行く）<span class="highlight">皮膚科</span>」<br>
+                        → 基底細胞がん（皮膚がん）
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">🔢 数字で覚える遺伝形式</div>
+                    
+                    <div class="memory-tip">
+                        <strong>常染色体優性遺伝（AD）：</strong><br>
+                        「<span class="highlight">50%</span>の確率で子に遺伝」<br>
+                        「<span class="highlight">17個</span>の症候群がAD」
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>常染色体劣性遺伝（AR）：</strong><br>
+                        「<span class="highlight">25%</span>の確率で子に発症」<br>
+                        「<span class="highlight">4個</span>の症候群がAR」<br>
+                        「<span class="highlight">DNA修復異常</span>が多い」
+                    </div>
+
+                    <div class="exam-point">
+                        <strong>🎯 AR症候群の覚え方：</strong><br>
+                        「<span class="highlight">A</span>TM（末梢血管拡張性運動失調）<br>
+                        <span class="highlight">B</span>LM（Bloom症候群）<br>
+                        <span class="highlight">X</span>P（色素性乾皮症）<br>
+                        <span class="highlight">F</span>ANC（Fanconi貧血）」<br>
+                        → 「ABXF」で覚える
+                    </div>
+                </div>
+
+                <div class="category-card">
+                    <div class="category-title">🔗 関連性で覚える</div>
+                    
+                    <div class="memory-tip">
+                        <strong>DNA修復異常グループ：</strong><br>
+                        「DNA壊れたら<span class="highlight">がん</span>になる」<br>
+                        BRCA1/2, ATM, MLH1/MSH2, BLM, FANC, XP関連
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>がん抑制遺伝子グループ：</strong><br>
+                        「<span class="highlight">ブレーキ</span>壊れたら暴走」<br>
+                        TP53, RB, p16/INK4A
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>大腸がん3兄弟：</strong><br>
+                        「Lynch（MMR）, FAP（APC）, Peutz-Jeghers（STK11）」
+                    </div>
+
+                    <div class="memory-tip">
+                        <strong>乳がん姉妹：</strong><br>
+                        「BRCA（HBOC）, TP53（Li-Fraumeni）, PTEN（Cowden）」
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // タブ切り替え機能
+        function showTab(tabName) {
+            // すべてのタブコンテンツを非表示
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // すべてのタブボタンを非アクティブ
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // ホバー効果
+        document.addEventListener('DOMContentLoaded', function() {
+            // カードのホバー効果
+            document.querySelectorAll('.syndrome-item').forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateX(5px)';
+                });
+                
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateX(0)';
+                });
+            });
+
+            // 表の行のホバー効果
+            document.querySelectorAll('.comparison-table tr').forEach(row => {
+                row.addEventListener('mouseenter', function() {
+                    this.style.backgroundColor = '#e3f2fd';
+                });
+                
+                row.addEventListener('mouseleave', function() {
+                    this.style.backgroundColor = '';
+                });
+            });
+        });
+
+        // 検索機能（簡易版）
+        function searchContent(searchTerm) {
+            const allText = document.querySelectorAll('.syndrome-item, .memory-tip, .exam-point');
+            allText.forEach(element => {
+                if (element.textContent.toLowerCase().includes(searchTerm.toLowerCase())) {
+                    element.style.backgroundColor = '#fff3cd';
+                } else {
+                    element.style.backgroundColor = '';
+                }
+            });
+        }
+
+        // キーボードショートカット
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey && e.key === 'f') {
+                e.preventDefault();
+                const searchTerm = prompt('検索キーワードを入力してください:');
+                if (searchTerm) {
+                    searchContent(searchTerm);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
